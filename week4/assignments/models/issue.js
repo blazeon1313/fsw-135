@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+// issue Schema
 const issueSchema = new Schema ({
     userId:{
         type: mongoose.Schema.Types.ObjectId,

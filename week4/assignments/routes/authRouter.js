@@ -1,10 +1,9 @@
-const express = require('express')
-const authRouter = express.Router()
-const User = require('../models/user.js')
+const express = require('express');
+const authRouter = express.Router();
+const User = require('../models/user.js');
 const jwt = require('jsonwebtoken')
 
-//signup
-authRouter.post("/signup", (req, res, next) => {
+authRouter.post('/signup', (req, res, next) => {
     User.findOne({ username: req.body.username.toLowerCase() }, (err, user) => {
         if(err){
             res.status(500)
@@ -12,35 +11,37 @@ authRouter.post("/signup", (req, res, next) => {
         }
         if(user){
             res.status(403)
-            return next(new error('Username Already Exists'))
+            return next( new Error("That username is already existing try again!"))
         }
         const newUser = new User(req.body)
         newUser.save((err, savedUser) => {
-            if(err){
-                res.status(500)
-                return next(err)
+            if(err) {
+            res.status(500)
+            return next(err)
             }
-            const token = jwt.sign(savedUser.toObject(), process.env.SECRET)
-            return res.status(201).send({ token, user: savedUser })
-        })
+        const token = jwt.sign(savedUser.toObject(), process.env.SECRET)
+        return res.status(201).send({ token, user: savedUser})
+    })
     })
 })
 
-// Login
-authRouter.post("/login", (req, res, next) => {
+authRouter.post('/login', (req, res, next) => {
     User.findOne({ username: req.body.username.toLowerCase() }, (err, user) => {
         if(err){
-          res.status(500)
-          return next(err)
+            res.status(500)
+            return next(err)
+        }
+        if(!user){
+            res.status(403)
+            return next(new Error('Username or Password is incorrect'))
         }
         if(!user || req.body.password !== user.password){
-          res.status(403)
-          return next(new Error('Invalid Credentials'))
+            res.status(403)
+            return next(new Error('Username or Password is incorrect'))
         }
         const token = jwt.sign(user.toObject(), process.env.SECRET)
         return res.status(200).send({ token, user })
     })
 })
 
-// export to server.js
 module.exports = authRouter

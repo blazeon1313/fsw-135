@@ -29,7 +29,7 @@ export default function Auth(){
 
     return (
         <div className="auth-container">
-          <h1>Issue Page</h1>
+          <h3>login/signup</h3>
           { !toggle ?
             <>
               <AuthForm 
@@ -38,7 +38,7 @@ export default function Auth(){
                 inputs={inputs}
                 btnText="Sign up"
               />
-              <p onClick={() => setToggle(prev => !prev)}>Already a member?</p>
+              <p onClick={() => setToggle(prev => !prev)}>Already a member click here?</p>
             </>
           :
             <>
@@ -48,7 +48,7 @@ export default function Auth(){
                 inputs={inputs}
                 btnText="Login"
               />
-              <p onClick={() => setToggle(prev => !prev)}>Not a member?</p>
+              <p onClick={() => setToggle(prev => !prev)}>Not a member click here?</p>
             </>
           }
         </div>

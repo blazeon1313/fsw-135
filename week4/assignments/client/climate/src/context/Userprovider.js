@@ -3,7 +3,7 @@ import axios from 'axios'
 export const UserContext = React.createContext()
 
 export default function UserProvider(props) {
-    const initState = { user: {}, token: "" }
+    const initState = { user: "", token: "" }
 
     const [userState, setUserState] = useState(initState)
 
@@ -17,7 +17,7 @@ export default function UserProvider(props) {
                token
             }))
         })
-        .catch(err => console.send(err.response.data.errMsg))
+        .catch(err => console.log(err.response.data.errMsg))
     }
 
     function login(credentials){

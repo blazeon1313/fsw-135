@@ -1,32 +1,32 @@
 import './App.css';
 import React, { useContext } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './components/Navbar.js'
 import Auth from './components/Auth.js'
 import Profile from './components/Profile.js'
 import Public from './components/Public.js'
-import { UserContext } from './context/UserProvider';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { UserContext } from './context/UserProvider.js';
 
 export default function App(){
     const { token, logout } = useContext(UserContext)
-    return(
+    return (
         <div className="app">
-            <h1 className="header">Climate Issues</h1>
-            <Navbar logout={logout}/>
-            <Routes>
+            <h1 className="header">Climate Issues App</h1>
+            {<Navbar logout={logout}/>}
+            <Switch>
                 <Route 
                     exact path="/" 
-                    element={token ? <Navigate to="/"/> : <Auth />}
+                    render={()=> token ? <Redirect to="/profile"/> : <Auth />}
                 />
                 <Route 
                     path="/profile"
-                    element={token ? <Profile /> : <Navigate to="/"/> }
+                    render={() => <Profile />}
                 />
                 <Route 
                     path="/public"
-                    element={ <Public />}
+                    render={() => <Public />}
                 />
-          </Routes>
+          </Switch>
       </div>
   )
 } 

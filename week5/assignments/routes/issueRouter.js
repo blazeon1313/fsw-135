@@ -31,46 +31,46 @@ issueRouter
     })
 
 //Create (POST)
-.post("/", (req, res, next) => {
-    const newIssue = new Issues(req.body)
-    newIssue.save((err, savedIssue) => {
-        if(err){
-            res.status(500)
-            return next(err)
-        }
-        return res.status(201).send(savedIssue)
+    .post("/", (req, res, next) => {
+        const newIssue = new Issues(req.body)
+        newIssue.save((err, savedIssue) => {
+            if(err){
+                res.status(500)
+                return next(err)
+            }
+            return res.status(201).send(savedIssue)
+        })
     })
-})
 
 // Update (PUT)
-.put("/:issuesId", (req, res, next) => {
-    Issues.findOneAndUpdate(
-        {_id: req.params.issuesId},
-        req.body,
-        {new: true},
-        (err, updatedissue) => {
-            if(err){
-                res.status(500)
-                return next(err)
+    .put("/:issuesId", (req, res, next) => {
+        Issues.findOneAndUpdate(
+            {_id: req.params.issuesId},
+            req.body,
+            {new: true},
+            (err, updatedissue) => {
+                if(err){
+                    res.status(500)
+                    return next(err)
+                }
+                return res.status(201).send(updatedissue)
             }
-            return res.status(201).send(updatedissue)
-        }
-    )
-})
+        )
+    })
 
 // Delete (DELETE)
-.delete("/:issuesId", (req, res, next) => {
-    Issues.findOneAndDelete(
-        {_id: req.params.issuesId},
-        (err, deletedissue) => {
-            if(err){
-                res.status(500)
-                return next(err)
+    .delete("/:issuesId", (req, res, next) => {
+        Issues.findOneAndDelete(
+            {_id: req.params.issuesId},
+            (err, deletedissue) => {
+                if(err){
+                    res.status(500)
+                    return next(err)
+                }
+                return res.status(201).send(deletedissue)
             }
-            return res.status(201).send(deletedissue)
-        }
-    )
-})
+        )
+    })
 
 // export to server.js
 module.exports = issueRouter

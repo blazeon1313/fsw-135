@@ -6,7 +6,7 @@ export default function Issue(props){
         <div>
             <h1> { title } </h1>
             <h3> { description } </h3>
-            <img src={imgUrl} alt={imgUrl} width={300} />
+            <img src={ imgUrl } alt={ imgUrl } width={ 300 } />
         </div>
     )
 }

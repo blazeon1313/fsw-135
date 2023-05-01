@@ -18,5 +18,5 @@ const issueSchema = new Schema ({
     }
 })
 
-// eport to issueRouter.js
+// export to issueRouter.js
 module.exports = mongoose.model('Issues', issueSchema)

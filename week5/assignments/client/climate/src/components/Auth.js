@@ -29,28 +29,28 @@ export default function Auth(){
 
     return (
         <div className="auth-container">
-          <h3>Climate Issues App</h3>
-          { !toggle ?
+            <h3>Climate Issues App</h3>
+            { !toggle ?
             <>
-              <AuthForm 
-                handleChange={handleChange}
-                handleSubmit={handleSignup}
-                inputs={inputs}
-                btnText="Sign up"
-              />
-              <p onClick={() => setToggle(prev => !prev)}>Already a member click here?</p>
+                <AuthForm 
+                    handleChange={handleChange}
+                    handleSubmit={handleSignup}
+                    inputs={inputs}
+                    btnText="Sign up"
+                />
+                <p onClick={() => setToggle(prev => !prev)}>Already a member click here?</p>
             </>
           :
-            <>
-              <AuthForm 
-                handleChange={handleChange}
-                handleSubmit={handleLogin}
-                inputs={inputs}
-                btnText="Login"
-              />
-              <p onClick={() => setToggle(prev => !prev)}>Not a member click here?</p>
-            </>
-          }
+                <>
+                <AuthForm 
+                    handleChange={handleChange}
+                    handleSubmit={handleLogin}
+                    inputs={inputs}
+                    btnText="Login"
+                />
+                    <p onClick={() => setToggle(prev => !prev)}>Not a member click here?</p>
+                </>
+            }
         </div>
-      )
-    }
+    )
+}

@@ -14,14 +14,14 @@ export default function AuthForm(props){
 
     return (
         <form className="login-signup" onSubmit={handleSubmit}>
-            Username: <input
+            <input
                type='text'
                value={username}
                name={"username"}
                onChange={handleChange}
                placeholder='Username'
             /><br />
-            Password: <input
+            <input
                type= 'text'
                value={password}
                name={"password"}
@@ -29,7 +29,7 @@ export default function AuthForm(props){
                placeholder="Password"
             /> <br />
             <button>{ btnText }</button>
-            <p style={{backgrounColor: "#c00000", color: "#ffffff", textAlign: "center"}}>{ errMsg }</p>   
+            <p style={{color: "red", textAlign: "center"}}>{ errMsg }</p>   
         </form>
     )
 }

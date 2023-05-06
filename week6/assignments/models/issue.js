@@ -15,6 +15,10 @@ const issueSchema = new Schema ({
     description:{
         type: String,
         required: true
+    },
+    img:{
+        type: String,
+        required: false
     }
 })
 

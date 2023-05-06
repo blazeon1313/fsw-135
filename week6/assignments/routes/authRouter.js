@@ -11,7 +11,7 @@ authRouter.post('/signup', (req, res, next) => {
         }
         if(user){
             res.status(403)
-            return next( new Error("That username is already existing try again!"))
+            return next( new Error("That username already exists!"))
         }
         const newUser = new User(req.body)
         newUser.save((err, savedUser) => {
@@ -26,7 +26,6 @@ authRouter.post('/signup', (req, res, next) => {
 })
 
 authRouter.post('/login', (req, res, next) => {
-    const failedLogin = 'Username or Password is incorrect'
     User.findOne({ username: req.body.username.toLowerCase() }, (err, user) => {
         if(err){
             res.status(500)
@@ -34,16 +33,16 @@ authRouter.post('/login', (req, res, next) => {
         }
         if(!user){
             res.status(403)
-            return next(new Error(failedLogin))
+            return next(new Error('Username or Password is incorrect'))
         }
         user.checkPassword(req.body.password, (err, isMatch) => {
             if(err) {
                 res.status(401)
-                return next(new Error(failedLogin))
+                return next(new Error('Username or Password is incorrect'))
             }
             if(!isMatch) {
                 res.status(401)
-                return next(new Error(failedLogin))
+                return next(new Error('Username or Password is incorrect'))
             }
         })
         const token = jwt.sign(user.withoutPassword(), process.env.SECRET)

@@ -43,7 +43,7 @@ export default function Auth(){
                     handleSubmit={handleSignup}
                     inputs={inputs}
                     btnText="Sign up"
-                    errMsg={ errMsg }
+                    errMsg={errMsg}
                 />
                 <p onClick={toggleForm}>Already a member?</p>
             </>
@@ -54,7 +54,7 @@ export default function Auth(){
                     handleSubmit={handleLogin}
                     inputs={inputs}
                     btnText="Login"
-                    errMsg={ errMsg }
+                    errMsg={errMsg}
                 />
                 <p onClick={toggleForm}>Not a member?</p>
                 </>

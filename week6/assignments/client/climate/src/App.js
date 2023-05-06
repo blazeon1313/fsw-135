@@ -23,13 +23,13 @@ export default function App(){
                     path="/profile"
                     component={Profile}
                     redirectTo='/'
-                    token={ token}
+                    token={ token }
                 />
                 <ProtectedRoute 
                     path="/public"
                     component={Public}
                     redirectTo='/'
-                    token={ token}                />
+                    token={ token }                />
           </Switch>
       </div>
   )

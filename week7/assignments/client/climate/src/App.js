@@ -19,19 +19,18 @@ export default function App(){
                     exact path="/" 
                     render={()=> token ? <Redirect to="/profile"/> : <Auth />}
                 />
+                <Route 
+                    path="/public"
+                    component={Public}
+                    redirectTo='/public'
+                />                               
                 <ProtectedRoute 
                     path="/profile"
                     component={Profile}
                     redirectTo='/'
                     token={ token }
                 />
-                <Route 
-                    path="/public"
-                    component={Public}
-                    redirectTo='/public'
-                    token={ token }
-                />
-          </Switch>
+          </Switch> 
       </div>
   )
 } 
